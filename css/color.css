@@ -1,6 +1,10 @@
-body {
+.container {
+	display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
     padding: 0%;
-    background: url(../images/skyscraper.jpeg) no-repeat center fixed;
+    background: url(../images/skyscraper.jpeg) no-repeat center;
     background-size: cover;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
@@ -12,10 +16,12 @@ body {
         border-left-width: 20px;
         border-style: double;
         color: yellow;
+        overflow-y: hidden;
     }
     to {
         border-right-width: 20px;
         border-style: double;
+        background-color: tomato;
     }
 }
 header {
@@ -23,12 +29,11 @@ header {
     animation-duration: 1500ms;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-
 }
 
 header h5 {
     border: 5px;
-    background-color: silver;
+    background-color: darkkhaki;
     margin-bottom: 0%;
 }
 
@@ -40,16 +45,18 @@ header h5 {
 }
 
 a {
-    color: red;
+    color: purple;
     text-decoration: none;
 }
 
 a:hover {
-    color: purple;
-    text-decoration: underline;
+    color: red;
+    font-weight: bold;
+    font-size: 17px;
 }
 
 #footer {
-    background-color :chartreuse;
+    font-style: italic;
+    background-color :darkkhaki;
     margin-top: 45%;
 }
