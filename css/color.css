@@ -1,0 +1,55 @@
+body {
+    padding: 0%;
+    background: url(../images/skyscraper.jpeg) no-repeat center fixed;
+    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+@keyframes OPlist {
+    from {
+        background-color: red;
+        border-left-width: 20px;
+        border-style: double;
+        color: yellow;
+    }
+    to {
+        border-right-width: 20px;
+        border-style: double;
+    }
+}
+header {
+    animation-name: OPlist;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+header h5 {
+    border: 5px;
+    background-color: silver;
+    margin-bottom: 0%;
+}
+
+#input {
+    margin-top: 50px;
+    width: 75%;
+    display: inline-block;
+    text-align: start;   
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    color: purple;
+    text-decoration: underline;
+}
+
+#footer {
+    background-color :chartreuse;
+    margin-top: 45%;
+}
