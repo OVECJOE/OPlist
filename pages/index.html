@@ -16,9 +16,11 @@
             A <strong>search engine</strong> that <em>answers</em> the 
             <strong>programmer's questions</strong>!
         </div>
-        <div>
-            <input id="input" type="search" autocomplete="off" spellcheck="true" placeholder="Search OPlist">
-        </div>
+        <form>
+            <input id="input" type="search" placeholder="Search OPlist">
+            <button onclick="getSearchQuery()" id="search">&#x1F50D;</button>
+        </form>
+        <script src="/scripts/getquery.js"></script>
     </main>
     <footer id="footer">
         <small>

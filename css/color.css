@@ -41,7 +41,19 @@ header h5 {
     margin-top: 50px;
     width: 75%;
     display: inline-block;
-    text-align: start;   
+    text-align: start;
+}
+
+#search {
+    text-align: justify;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#search:hover {
+    background-color: transparent;
 }
 
 a {
