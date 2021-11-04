@@ -23,13 +23,13 @@ Her search syntax is the first; She bores a funny search rule that, if not under
 
 #### SEARCH SYNTAX EXAMPLES
 
-```SQL
+```python
 SEARCH/ {node 'how to install'}
 ```
 
 **Note the above single quotes!** If you use double quotes, well I leave that to you to test out.
 
-```SQL
+```python
 {node 'how to install'}
 ```
 
