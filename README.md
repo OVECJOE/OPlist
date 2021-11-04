@@ -43,6 +43,11 @@ Here, the **king** was ignored since default is `SEARCH/`
 - With a search syntax, it will become easier to introduce the concept of **multiple** disciples in a later version.
 - As programmers, we have to think programmatically... Do you agree? :smile:
 
+#### SUPPORTED "KING"S
+
+- SEARCH (default) - search the disciple(s) like every other search engine and returns a list of URLs where the disciple(s) is/are found.
+- FASTSEARCH - returns the closest match's contents and a link to its URL. This is for a fast search.
+
 ## AUTHORS
 
 OVECJOE <projectoplist@gmail.com>
