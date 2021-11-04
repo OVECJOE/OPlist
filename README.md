@@ -28,6 +28,7 @@ Her search syntax is the first; She bores a funny search rule that, if not under
 **Note the above single quotes!** If you use double quotes, well I leave that to you to test out.
 
 ``` {node 'how to install'} ```
+
 Here, the **king** was ignored since default is `SEARCH/`
 
 **NOTE**: *More than one disciple is not allowed yet, but it will be included possibly in version 1.0.1
