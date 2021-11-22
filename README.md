@@ -35,7 +35,7 @@ SEARCH/ {node 'how to install'}
 
 Here, the **king** was ignored since default is `SEARCH/`
 
-**NOTE**: *More than one disciple is not allowed yet, but it will be included possibly in version 1.0.1
+**NOTE**: *More than one disciple is not allowed yet, but it will be included possibly in version 1.0.1*
 
 #### REASONS FOR A SEARCH SYNTAX
 
