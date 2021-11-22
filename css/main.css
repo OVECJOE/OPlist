@@ -1,0 +1,99 @@
+.container {
+	display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    padding: 0%;
+    background: url(../images/894294.jpg) no-repeat center;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+@keyframes OPlist {
+    from {
+        background-color: red;
+        border-left-width: 20px;
+        border-style: ridge;
+        color: yellow;
+    }
+    to {
+        border-right-width: 20px;
+        border-style: ridge;
+        background-color: tomato;
+        border-color: thistle;
+    }
+}
+header {
+    border-radius: 15px;
+    padding: 5px;
+
+    animation-name: OPlist;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+header h5 {
+    border: 5px;
+    background-color: darkkhaki;
+    margin-bottom: 0%;
+}
+
+#input {
+    margin-top: 40px;
+    width: 75%;
+    height: 38px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 12px;
+    border-color: #DD00EE;
+}
+
+#search {
+    text-align: justify;
+    height: 35px;
+    width: 60px;
+    text-align: center;
+    border-radius: 12px;
+    border-color: #DD00EE;
+}
+
+a {
+    color: burlywood;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+    color: #BFFF79;
+    background-color: yellow;
+    color: red;
+    border-radius: 5px;
+}
+
+#copyright {
+    background-color: yellow;
+    color: darkblue;
+    padding-top: 8px;
+}
+
+#footer {
+    display: flex;
+    justify-content:space-evenly;
+    align-items: flex-end;
+    position: fixed;
+    color: wheat;
+    width: 99%;
+    bottom: 0;
+    height: 40px;
+    border-top: 5px solid yellow;
+}
+
+#email {
+    border-top-color: red;
+    border-bottom-color: red;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+    color: yellow;
+}
