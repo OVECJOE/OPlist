@@ -27,7 +27,7 @@ Her search syntax is the first; She bores a funny search rule that, if not under
 SEARCH/ {node 'how to install'}
 ```
 
-**Note the above single quotes!** If you use double quotes, well I leave that to you to test out.
+**Note the above single quotes!** If you use double quotes, well I leave that to you to test out.*
 
 ```python
 {node 'how to install'}
