@@ -5,7 +5,7 @@ function validateSearchQuery() {
 
 	let idx = query.search(/^([A-Z]*\/\s)?\{[a-zA-Z]+ ["']([a-zA-Z0-9]*.){1,}["']\}$/g);
 	if (idx)
-	{
+	{--
 		alert(`SyntaxError: (${query}) is an invalid search query!`);
 		return "";
 	}
