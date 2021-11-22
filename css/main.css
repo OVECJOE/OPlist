@@ -59,16 +59,17 @@ header h5 {
 }
 
 a {
-    color: burlywood;
+    color: floralwhite;
     text-decoration: none;
 }
 
-a:hover {
+a:hover,
+#search:hover {
     font-weight: bold;
     color: #BFFF79;
     background-color: yellow;
     color: red;
-    border-radius: 5px;
+    border-radius: 7px;
 }
 
 #copyright {
