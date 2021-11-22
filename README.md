@@ -23,17 +23,17 @@ Her search syntax is the first; She bores a funny search rule that, if not under
 
 #### SEARCH SYNTAX EXAMPLES
 
-```python
+```bash
 SEARCH/ {node 'how to install'}
 ```
 
 **Note the above single quotes!** If you use double quotes, well I leave that to you to test out.*
 
-```python
+```bash
 {node 'how to install'}
 ```
 
-Here, the **king** was ignored since default is `SEARCH/`
+Here, the **king** was ignored since default is `SEARCH/`. Also double quotes, `""`, can be used in place of single quotes...it doesn't matter - what matters is this: _The parser is not forgiving!_
 
 **NOTE**: *More than one disciple is not allowed yet, but it will be included possibly in version 1.0.1*
 
