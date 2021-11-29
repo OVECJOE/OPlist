@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montagu+Slab&display=swap');
-{
+where {
     font-family: 'Montagu Slab', serif;
 }
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
-{
+where {
     font-family: 'Outfit', sans-serif;
 }
 
@@ -65,7 +65,7 @@ form{
     width: 100%;
     display: flex;
     align-items: flex-end;
-    border: #740394A;
+    border: #74039A;
     border-width: 5px;
 }
 #input{
