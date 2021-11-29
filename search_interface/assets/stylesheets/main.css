@@ -10,21 +10,21 @@ where {
 body{
     margin: 0;
     padding: 0;
-    background-color: #CCFFBD;
-    font-family: 'Outfit', sans-serif;;
-}
+    background-color: #ccffbd;
+    font-family: 'Outfit', sans-serif;
 
-header{
-    text-align: center;
-    margin-top: 100px; 
-}
-body{
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
+header{
+    text-align: center;
+    margin-top: 100px;
+}
+
 main{
     width: 90%;
     display: flex;
@@ -75,6 +75,10 @@ form{
     outline:  none;
     font-family: 'Outfit', sans-serif;
     font-size: 17px;
+}
+
+#input:hover {
+    opacity: 0.6;
 }
 
 #search{
