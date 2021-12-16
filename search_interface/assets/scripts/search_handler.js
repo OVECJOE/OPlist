@@ -1,7 +1,5 @@
-const button = document.querySelector('button');
-
 function validateSearchQuery() {
-	var query = document.getElementById("input").value;
+	const query = document.getElementById("input").value;
 
 	let idx = query.search(/^([A-Z]*\/\s)?\{[a-zA-Z]+ ["']([a-zA-Z0-9]*.){1,}["']\}$/g);
 	if (idx) {
@@ -35,4 +33,10 @@ function tokenizeQuery() {
 	return JSON.stringify(command_set);
 }
 
-button.addEventListener('click', tokenizeQuery);
+$("button").click(
+	function () {
+		json_string = tokenizeQuery();
+		if (json_string != null)
+			$.post("http://127.0.0.1:5500",
+			json_string);
+	});
