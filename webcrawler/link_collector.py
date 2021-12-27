@@ -1,3 +1,8 @@
+"""
+This module contains the class implementation of the LinkCollector class.
+The class contains the code to gather links from the internet
+along with their title for classifying or future use.
+"""
 from datetime import datetime
 from urllib.parse import urlparse
 import requests
@@ -113,9 +118,9 @@ class LinkCollector:
                                                 urlparse(url).netloc) + link
                     self.__checkLink(link)
 
-    def loopThruSeedUrls(self, seedUrls=[]):
+    def loopThruSeedUrls(self, seedUrls=None):
         """Goes through all the seed URLs and extract links"""
-        if len(seedUrls) > 0:
+        if seedUrls:
             self.__seedURLs = seedUrls
         for url in self.__seedURLs:
             self.parsePage(url)
