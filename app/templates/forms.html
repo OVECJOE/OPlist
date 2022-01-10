@@ -1,0 +1,8 @@
+{% macro input(name, type='text') -%}
+<input id="input" type="{{ type }}" name="{{ name }}" value="{{ request.form.value }}" size="{{ size }}"
+    placeholder='Search OPlist'>
+{%- endmacro %}
+
+{% macro button() -%}
+<button id="search" type="submit">&#x1F50D;</button>
+{%- endmacro %}

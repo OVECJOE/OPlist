@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}HomePage{% endblock %}
+{% block head %}
+{{ super() }}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/main.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="logo-box">
+            <div class="logo-title">OPList</div>
+            <h4 class="logo-slogan">The Programmer's Search Engine</h4>
+        </div>
+        {% import 'forms.html' as forms %}
+        <form action="/" method="post">
+            {{ forms.input(name='search', type='search') }}
+            {{ forms.button() }}
+        </form>
+        <div class="logo-desc">
+            A search engine that answers the programmer's questions!
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+{{ super() }}
+{% endblock %}

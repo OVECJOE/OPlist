@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='profile.ico') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>OPlist | {% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <main id="content">{% block content %}{% endblock %}</main>
+    <footer id="footer">
+        {% block footer %}
+        <small>
+            <i id="copyright">Copyright &copy; 2021 OVECJOE</i><br>
+            <div id="email">
+                <strong>Wanna contact the team?</strong> Send an email to
+                <a href="mailto:projectoplist@gmail.com">projectoplist@gmail.com</a>
+            </div>
+        </small>
+        {% endblock %}
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/search_handler.js') }}"></script>
+</body>
