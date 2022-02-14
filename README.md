@@ -51,3 +51,4 @@ Here, the **king** was ignored since default is `SEARCH/`. Also double quotes, `
 ## AUTHORS
 
 OVECJOE <projectoplist@gmail.com>
+JMoseka <https://github.com/jmoseka>
