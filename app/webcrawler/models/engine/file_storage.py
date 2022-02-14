@@ -1,11 +1,12 @@
 """Contains the FileStorage class implementation"""
 import json
-from models.query_model import QueryModel
+import os
+from ..query_model import QueryModel
 
 
 class FileStorage:
     """This class stores QueryModel objects into a file"""
-    __filename = 'app/json/file.json'
+    __filename = 'file.json'
     __objects = {}
 
     def all(self):
@@ -29,12 +30,15 @@ class FileStorage:
             temp = {}
             temp.update(FileStorage.__objects)
             for k, v in temp.items():
-                temp[k] = v.toDict()
+                temp[k] = v.to_dict()
             json.dump(temp, f, indent=4)
 
     def reload(self):
         """Loads storage dictionary from file"""
         try:
+            if os.path.getsize(self.__filename) == 0:
+                return
+
             with open(FileStorage.__filename, 'r', encoding='utf-8') as f:
                 temp = json.load(f)
                 for k, v in temp.items():

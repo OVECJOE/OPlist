@@ -1,18 +1,31 @@
 $(document).ready(function () {
+	/**
+	 * validateSearchQuery - validate the query string entered by the user.
+	 * query follows a particular rule or syntax.
+	 * @returns query if query is valid, else ""
+	 */
 	function validateSearchQuery() {
-		const query = document.querySelector("input").value;
+		const query = $("input").val();
 
 		let idx = query.search(/^([A-Z]*\/\s)?\{[a-zA-Z]+ ["']([a-zA-Z0-9]*.){1,}["']\}$/g);
 		if (idx) {
-			alert(`SyntaxError: (${query}) is an invalid search query!`);
+			const message = 'Query does not follow OPlist\'s syntax!!! Consult docs.'
+			$('#errmsg').text(message).css(
+				'color', 'red').css('text-align', 'center');
 			return "";
 		}
 
 		return query;
 	}
 
+	/**
+	 * tokenizeQuery - This function parses the query obtained from the user into
+	 * a king, head and body preparing it for the backend.
+	 * @returns an object containing the parsed data on success, else ""
+	 */
 	function tokenizeQuery() {
-		query = validateSearchQuery();
+		const query = validateSearchQuery();
+		let king, disciple;
 		if (query === "")
 			return query;
 
@@ -24,20 +37,21 @@ $(document).ready(function () {
 			disciple = query.slice(1, query.length - 1);
 		}
 
-		let command_set = {
+		return {
 			"king": king,
 			"head": disciple.slice(0, disciple.indexOf(" ")),
 			"body": disciple.slice(disciple.indexOf(" ") + 2, -1)
 		};
-
-		return command_set;
 	}
 
 	$("button").click(function () {
-		data = tokenizeQuery();
+		const data = tokenizeQuery();
 		if (data !== '') {
 			document.querySelector("input").value =
 				`${data.king}|${data.head}|${data.body}`;
+			$('#errmsg').text();
 		}
+		else
+			return false;
 	});
 });

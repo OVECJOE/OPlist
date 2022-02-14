@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Results{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/result.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='profile.ico') }}" alt="logo"
+                        height="30px" width="30px">
+                    </a>
+                </li>
+                <li>
+                    {% import 'forms.html' as forms %}
+                    <form action="/" method="post">
+                        {{ forms.input(name='search', type='search') }}
+                        {{ forms.button() }}
+                    </form>
+                </li>
+                <li id="help"><a href="">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div id="errmsg"></div>
+        </section>
+        {% if results %}
+            {% for result in results %}
+                <section>
+                    <h3>{{ result[0] }}</h3>
+                    <blockquote><em>{{ result[1] }}</em></blockquote>
+                    <p><a href="{{ result[2] }}"><em>Visit Page</em></a></p>
+                </section>
+            {% endfor %}
+        {% else %}
+                <section>
+                    <h2>Search Query was not found!</h2>
+                </section>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% endblock %}

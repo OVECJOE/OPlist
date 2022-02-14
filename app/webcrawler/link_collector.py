@@ -10,6 +10,8 @@ from requests.exceptions import ConnectionError, InvalidURL, ReadTimeout
 from bs4 import BeautifulSoup
 import re
 
+from .urls_organizer import UrlsOrganizer
+
 
 class LinkCollector:
     """
@@ -19,7 +21,7 @@ class LinkCollector:
 
     def __init__(self):
         """Initializes the link collector object/instance"""
-        self.__seedURLs = [
+        self.__seed_urls = [
             'https://www.codementor.io/projects',
             'https://www.geeksforgeeks.org',
             'https://www.freecodecamp.org/learn',
@@ -77,8 +79,7 @@ class LinkCollector:
                     title = bs.title.text
                 except AttributeError:
                     title = link.split('/')[-1]
-                finally:
-                    return title
+                return title
 
     def __checkLink(self, link):
         """Checks that certain requirements are met for a link"""
@@ -122,10 +123,19 @@ class LinkCollector:
                         link = "{}://{}".format(urlparse(url).scheme,
                                                 urlparse(url).netloc) + link
                     self.__checkLink(link)
+            uo = UrlsOrganizer(self.__collectedLinks, self.__visitedLinks)
+            uo.save()
+            self.__collectedLinks.clear()
+            self.__visitedLinks.clear()
 
     def loopThruSeedUrls(self, seedUrls=None):
         """Goes through all the seed URLs and extract links"""
         if seedUrls:
-            self.__seedURLs = seedUrls
-        for url in self.__seedURLs:
+            self.__seed_urls = seedUrls
+        for url in self.__seed_urls:
             self.parsePage(url)
+
+
+if __name__ == '__main__':
+    lc = LinkCollector()
+    lc.loopThruSeedUrls()

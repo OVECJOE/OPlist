@@ -7,41 +7,33 @@ class QueryModel:
     count = 0
 
     def __init__(self, *args, **kwargs):
-        """Initializes the QueryModel class"""
-        from models import storage
+        """Initializes the QueryModel class
+
+        Note: You can use only positional arguments or keyword arguments;
+        If both are used, it defaults to keyword arguments.
+        """
         QueryModel.count += 1
         if kwargs:
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+            if 'created_at' in kwargs:
+                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                kwargs['created_at'] = datetime.now()
 
             self.__dict__.update(kwargs)
         else:
-            if len(args) != 3:
-                raise IndexError(
-                    "3 positional arguments required, but {:d} provided"
-                    .format(len(self.__dict__)))
             self.king = args[0]
             self.head = args[1]
             self.body = args[2]
-            self.created_at = self.updated_at = datetime.now()
-        storage.new(self)
+            self.created_at = datetime.now()
 
     def __str__(self):
         """Returns a string representation of the instance"""
         return "({}) [{}, {}]".format(
             self.king, self.head, self.body)
 
-    def toDict(self):
+    def to_dict(self):
         """Converts object to dictionary"""
         new = self.__dict__.copy()
         new['created_at'] = new['created_at'].isoformat()
-        new['updated_at'] = new['updated_at'].isoformat()
         return new
-
-    def save(self):
-        """Updates updated_at with the current time when obj is changed"""
-        from models import storage
-        self.updated_at = datetime.now()
-        storage.save()

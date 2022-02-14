@@ -1,8 +1,5 @@
-beautifulsoup4
-requests
-yake
-sqlalchemy
-pymysql
-sqlalchemy_utils
-flask
-flask-WTF
+psycopg2-binary==2.9.3
+python-dotenv==0.19.2
+SQLAlchemy-Utils==0.38.2
+yake==0.4.8
+Flask

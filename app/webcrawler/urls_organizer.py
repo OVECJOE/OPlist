@@ -7,18 +7,18 @@ from time import sleep
 import yake
 import json
 
-from link_collector import LinkCollector
-
 
 class UrlsOrganizer:
     """Organizes URLs based on keywords"""
 
-    __filename = 'json/datasets.json'
+    __filename = 'datasets.json'
     __datasets = {}
 
-    def __init__(self, collectedLinks, visitedLinks):
+    def __init__(self, collectedLinks=None, visitedLinks=None):
         self.__collectedLinks = collectedLinks
         self.__visitedLinks = visitedLinks
+
+        self.reload()
 
     def __extractImportantKws(self):
         """
@@ -33,6 +33,34 @@ class UrlsOrganizer:
         keywords = kw_extractor.extract_keywords(wordList)
         return (keyword[0].lower() for keyword in keywords)
 
+    def __sort_visited(self, keyword):
+        """
+        Sorts the visited links based on keyword
+        """
+        for link in self.__visitedLinks:
+            state = {'url': link, 'visited': True}
+            if keyword in link.split()[-1].lower():
+                if keyword in self.__datasets:
+                    if link in self.__datasets[keyword]:
+                        self.__datasets[keyword][
+                            self.__datasets[keyword].index(link)] = state
+                    else:
+                        self.__datasets[keyword].append(state)
+                else:
+                    self.__datasets[keyword] = [state, ]
+
+    def __sort_collected(self, keyword):
+        """
+        Sorts collected links based on keyword
+        """
+        for result in self.__collectedLinks:
+            if keyword in result[0].lower():
+                if keyword in self.__datasets:
+                    if result[1] not in self.__datasets[keyword]:
+                        self.__datasets[keyword].append(result[1])
+                else:
+                    self.__datasets[keyword] = [result[1], ]
+
     def organize(self):
         """Organize URLs based on keywords into a dict object."""
         keywords = self.__extractImportantKws()
@@ -40,31 +68,15 @@ class UrlsOrganizer:
         print("Storing links to a dict object...")
 
         for keyword in sorted(keywords):
-            for link in self.__visitedLinks:
-                state = {'url': link, 'visited': True}
-                if keyword in link.split()[-1].lower():
-                    if keyword in self.__datasets:
-                        if link in self.__datasets[keyword]:
-                            self.__datasets[keyword][
-                                self.__datasets[keyword].index(link)] = state
-                        else:
-                            self.__datasets[keyword].append(state)
-                    else:
-                        self.__datasets[keyword] = [state, ]
+            self.__sort_visited(keyword)
+            self.__sort_collected(keyword)
 
-            for result in self.__collectedLinks:
-                if keyword in result[0].lower():
-                    if keyword in self.__datasets:
-                        if result[1] not in self.__datasets[keyword]:
-                            self.__datasets[keyword].append(result[1])
-                    else:
-                        self.__datasets[keyword] = [result[1], ]
         self.__saveAsJson(self.__datasets)
         return self.__datasets.copy()
 
     def __saveAsJson(self, datasets):
         """Save it to a JSON file as cache"""
-        with open(self.__filename, 'w', encoding='uft-8') as jsonfile:
+        with open(self.__filename, 'w') as jsonfile:
             json.dump(datasets, jsonfile, indent=4)
 
     def save(self):
@@ -85,7 +97,7 @@ class UrlsOrganizer:
         passwd = os.getenv('WC_PWD')
         db = os.getenv('WC_DB')
 
-        DATABASE_URL = "mysql+mysqldb://{}:{}@{}:3306/{}".format(
+        DATABASE_URL = "postgresql://{}:{}@{}:5432/{}".format(
             user, passwd, host, db
         )
         engine = create_engine(DATABASE_URL, echo=True)
@@ -95,8 +107,8 @@ class UrlsOrganizer:
         Base.metadata.create_all(engine)
         session = sessionmaker(bind=engine)()
 
-        obj_as_dict = lambda obj: {o.key: getattr(obj, o.key)
-            for o in inspect(obj).mapper.column_attrs}
+        def obj_as_dict(obj): return {o.key: getattr(obj, o.key)
+                                      for o in inspect(obj).mapper.column_attrs}
 
         for key, value in datasets.items():
             stmt = session.query(Keyword).filter(Keyword.name == key).first()
@@ -124,10 +136,11 @@ class UrlsOrganizer:
                     session.add(new_link)
         session.commit()
 
-    def reload(self) -> dict:
+    def reload(self):
         """Reload the datasets stored in the JSON file."""
-        if not os.access(self.__filename, os.F_OK):
-            return None
-        with open(self.__filename, "r", encoding="utf-8") as jsonfile:
+        if not os.path.exists(self.__filename) or \
+            os.path.getsize(self.__filename) == 0:
+            return {}
+        with open(self.__filename, "r") as jsonfile:
             self.__datasets = json.load(jsonfile)
-            return self.__datasets.copy()
+            return self.__datasets
